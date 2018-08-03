@@ -132,6 +132,12 @@ class TcpServer:
             angle = data_hex[4]
             print("send %d : %d" , (id, angle))
             Send().SetSpeed(id, angle)
+	# set camera status
+	elif 0x03 == data_hex[1]:
+	    valid_len = data_hex[2]
+	    id = data_hex[3]
+  	    status =  data_hex[4] 
+	    print("camera %d : %d", (id, status))
     
     @threaded
     def Run(self):
